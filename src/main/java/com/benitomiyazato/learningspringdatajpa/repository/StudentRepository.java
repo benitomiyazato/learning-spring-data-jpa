@@ -13,12 +13,12 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     List<Student> findStudentByFirstNameIgnoreCase(String joao);
 
-    @Query("SELECT s FROM Student s WHERE s.email = ?1")
-    Student getStudentByEmail(String email);
+    @Query("SELECT s FROM Student s WHERE s.email = :studentEmail")
+    Student getStudentByEmail(String studentEmail);
 
-    @Query("SELECT s FROM Student s WHERE s.guardian.email = ?1")
-    List<Student> getStudentByGuardianEmail(String email);
+    @Query("SELECT s FROM Student s WHERE s.guardian.email = :guardianEmail")
+    List<Student> getStudentByGuardianEmail(String guardianEmail);
 
-    @Query("SELECT s.firstName FROM Student s WHERE s.email = ?1")
-    String getStudentFirstNameByEmail(String email);
+    @Query("SELECT s.firstName FROM Student s WHERE s.email = :studentEmail")
+    String getStudentFirstNameByEmail(String studentEmail);
 }

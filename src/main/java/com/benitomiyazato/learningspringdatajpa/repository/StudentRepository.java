@@ -2,9 +2,11 @@ package com.benitomiyazato.learningspringdatajpa.repository;
 
 import com.benitomiyazato.learningspringdatajpa.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,4 +24,9 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
     @Query("SELECT s.firstName FROM Student s WHERE s.email = :studentEmail")
     String getStudentFirstNameByEmail(@Param("studentEmail") String studentEmail);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Student s SET s.firstName = :newName WHERE s.email = :studentEmail")
+    int updateStudentFirstNameByEmail(@Param("newName")String newName, @Param("studentEmail")String studentEmail);
 }

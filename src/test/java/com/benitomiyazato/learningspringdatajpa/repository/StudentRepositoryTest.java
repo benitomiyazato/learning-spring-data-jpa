@@ -83,4 +83,11 @@ public class StudentRepositoryTest {
                 .map(Student::getFirstName)
                 .forEach(System.out::println);
     }
+
+    @Test
+    public void updateStudentFirstNameByEmail() {
+        int updatedStudentId = studentRepository.updateStudentFirstNameByEmail("Jorge", "ciclddano.detal@gmail.com");
+        String updated = updatedStudentId > 0 ? "true" : "false";
+        System.out.printf("Updated: %s", updated);
+    }
 }

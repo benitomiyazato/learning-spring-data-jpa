@@ -41,7 +41,7 @@ public class StudentRepositoryTest {
     }
 
     @Test
-    public void printStudentByNameContaining(){
+    public void printStudentByNameContaining() {
         List<Student> studentList = studentRepository.findStudentByFirstNameContaining("ano");
         List<String> studentFirstNameList =
                 studentList
@@ -53,7 +53,7 @@ public class StudentRepositoryTest {
     }
 
     @Test
-    public void printStudentByNameIgnoreCase(){
+    public void printStudentByNameIgnoreCase() {
         List<Student> studentList = studentRepository.findStudentByFirstNameIgnoreCase("joao");
         List<String> studentFirstNameList =
                 studentList
@@ -65,14 +65,22 @@ public class StudentRepositoryTest {
     }
 
     @Test
-    public void getStudentByEmail(){
+    public void getStudentByEmail() {
         Student student = studentRepository.getStudentByEmail("fulano.detal@gmail.com");
         System.out.println("student = " + student);
     }
 
     @Test
-    public void getStudentFirstNameByEmail(){
+    public void getStudentFirstNameByEmail() {
         String studentFirstName = studentRepository.getStudentFirstNameByEmail("beltrano.detal@gmail.com");
         System.out.println("studentFirstName = " + studentFirstName);
+    }
+
+    @Test
+    public void printStudentFirstNameByGuardianEmail() {
+        studentRepository.getStudentByGuardianEmail("bills@gmail.com")
+                .stream()
+                .map(Student::getFirstName)
+                .forEach(System.out::println);
     }
 }

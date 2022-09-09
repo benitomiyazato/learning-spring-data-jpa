@@ -2,6 +2,7 @@ package com.benitomiyazato.learningspringdatajpa.repository;
 
 import com.benitomiyazato.learningspringdatajpa.entity.Course;
 import com.benitomiyazato.learningspringdatajpa.entity.CourseMaterial;
+import com.benitomiyazato.learningspringdatajpa.entity.Teacher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +25,24 @@ class CourseRepositoryTest {
         System.out.println("name = " + name);
     }
 
+    @Test
+    void saveCourseWithTeacher(){
+        Teacher teacherToSave = Teacher.builder()
+                .firstName("JAJAJA")
+                .lastName("KAKAKA")
+                .build();
+
+        Course courseToSave = Course.builder()
+                .title("Spring Data JPA")
+                .credit(11)
+                .teacher(teacherToSave)
+                .build();
+
+        courseRepository.save(courseToSave);
+    }
+
+    @Test
+    void updateCourseById(){
+        courseRepository.updateCourseNameById(1L, "Spring Security");
+    }
 }

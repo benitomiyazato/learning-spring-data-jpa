@@ -43,6 +43,7 @@ class CourseRepositoryTest {
 
     @Test
     void updateCourseById(){
-        courseRepository.updateCourseNameById(1L, "Spring Security");
+        int updated = courseRepository.updateTitleByCourseId("Spring Security", 2L);
+        System.out.printf("Updated: %s", updated > 0 ? true : false);
     }
 }

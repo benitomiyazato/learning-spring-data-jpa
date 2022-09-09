@@ -10,10 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
-
-    @Query("UPDATE Student s SET s.firstName = :newName WHERE s.studentId = :courseId")
-    @Modifying
     @Transactional
-    int updateCourseNameById(@Param("courseId")Long courseId, @Param("newName") String newName);
+    @Modifying
+    @Query("update Course c set c.title = :newTitle where c.courseId = :courseId")
+    int updateTitleByCourseId(@Param("newTitle") String title, @Param("courseId") Long courseId);
+
+
 
 }

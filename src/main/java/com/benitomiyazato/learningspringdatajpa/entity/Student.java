@@ -3,6 +3,7 @@ package com.benitomiyazato.learningspringdatajpa.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -26,4 +27,7 @@ public class Student {
 
     @Embedded
     private Guardian guardian;
+
+    @ManyToMany(mappedBy = "students")
+    private List<Course> courses;
 }

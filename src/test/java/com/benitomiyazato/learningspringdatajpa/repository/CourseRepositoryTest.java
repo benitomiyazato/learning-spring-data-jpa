@@ -2,6 +2,7 @@ package com.benitomiyazato.learningspringdatajpa.repository;
 
 import com.benitomiyazato.learningspringdatajpa.entity.Course;
 import com.benitomiyazato.learningspringdatajpa.entity.CourseMaterial;
+import com.benitomiyazato.learningspringdatajpa.entity.Student;
 import com.benitomiyazato.learningspringdatajpa.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,34 @@ class CourseRepositoryTest {
         Pageable firstPageUpToTenRecords = PageRequest.of(0, 10);
         List<Course> courseList = courseRepository.findCourseByTitleContaining("s", firstPageUpToTenRecords).getContent();
         System.out.println("courseList = " + courseList);
+    }
+
+    @Test
+    void saveCourseWithStudentAndTeacher(){
+        Student student1 = Student.builder()
+                .firstName("Fulano")
+                .lastName("De Tal")
+                .email("fulano.detal@gmail.com")
+                .build();
+
+        Student student2 = Student.builder()
+                .firstName("Ciclano")
+                .lastName("De Tal")
+                .email("ciclano.detal@gmail.com")
+                .build();
+
+        Teacher teacher = Teacher.builder()
+                .firstName("Gustavo")
+                .lastName("Guanabara")
+                .build();
+
+        Course course = Course.builder()
+                .title("Python")
+                .credit(11)
+                .teacher(teacher)
+                .students(List.of(student1, student2))
+                .build();
+
+        courseRepository.save(course);
     }
 }

@@ -1,7 +1,9 @@
 package com.benitomiyazato.learningspringdatajpa.repository;
 
+import com.benitomiyazato.learningspringdatajpa.entity.Course;
 import com.benitomiyazato.learningspringdatajpa.entity.Guardian;
 import com.benitomiyazato.learningspringdatajpa.entity.Student;
+import com.benitomiyazato.learningspringdatajpa.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

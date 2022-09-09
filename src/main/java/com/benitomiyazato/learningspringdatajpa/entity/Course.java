@@ -15,12 +15,12 @@ import javax.persistence.*;
 public class Course {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name = "course_sequence", sequenceName = "course_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_sequence")
     private Long courseId;
     private String title;
     private Integer credit;
 
-    @OneToOne
-    @JoinColumn(name = "course_material_id", referencedColumnName = "courseMaterialId")
+    @OneToOne(mappedBy = "course")
     private CourseMaterial courseMaterial;
 }

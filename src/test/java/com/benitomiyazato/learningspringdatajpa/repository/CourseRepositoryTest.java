@@ -3,7 +3,6 @@ package com.benitomiyazato.learningspringdatajpa.repository;
 import com.benitomiyazato.learningspringdatajpa.entity.Course;
 import com.benitomiyazato.learningspringdatajpa.entity.CourseMaterial;
 import com.benitomiyazato.learningspringdatajpa.entity.Teacher;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,12 +10,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class CourseRepositoryTest {
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private TeacherRepository teacherRepository;
 
     @Test
     void printAllCourses() {
@@ -42,8 +42,15 @@ class CourseRepositoryTest {
     }
 
     @Test
-    void updateCourseById(){
+    void updateTitleByCourseId(){
         int updated = courseRepository.updateTitleByCourseId("Spring Security", 2L);
-        System.out.printf("Updated: %s", updated > 0 ? true : false);
+        System.out.printf("Updated: %s", updated > 0);
+    }
+
+    @Test
+    void updateTeacherByCourseId(){
+        Teacher newTeacher = teacherRepository.findById(2L).get();
+
+        courseRepository.updateTeacherByCourseId(newTeacher, 2L);
     }
 }

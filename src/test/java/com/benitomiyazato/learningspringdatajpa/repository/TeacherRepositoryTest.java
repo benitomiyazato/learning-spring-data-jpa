@@ -17,17 +17,7 @@ class TeacherRepositoryTest {
 
     @Test
     void saveTeacher(){
-        Course courseSQL = Course.builder()
-                .title("MySQL")
-                .credit(8)
-                .build();
-
-        Course coursePython = Course.builder()
-                .title("Python")
-                .credit(11)
-                .build();
-
-        Teacher teacherToSave = Teacher.builder()
+         Teacher teacherToSave = Teacher.builder()
                 .firstName("Eduardo")
                 .lastName("Silva")
                 .build();
